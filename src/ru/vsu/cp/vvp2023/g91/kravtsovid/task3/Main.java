@@ -1,5 +1,6 @@
 package ru.vsu.cp.vvp2023.g91.kravtsovid.task3;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +10,19 @@ public class Main {
     public static final Parabola P2 = new Parabola(-5, -6, 1.0 / 2);
     public static final Parabola P3 = new Parabola(-1, 4, 1.0 / 8);
 
+    public static void inpt(Scanner scn) {
+        try {
+            global.x = scn.nextDouble();
+            if (!(-10.0 < global.x && global.x < 10.0)) {
+                System.out.println("Число выходит за допустимый предел. Пожалуйста вводите только числа от -10 до 10");
+            } else {
+                global.a = false;
+            }
+        } catch (InputMismatchException e) {
+            String err = scn.next();
+            System.out.println('"' + err + '"' + " не является допустимым значением, пожалуйста вводите только числа от -10 до 10!");
+        }
+    }
 
     public static SimpleColor getColor(double x, double y) {
         System.out.printf("(" + x + ", " + y + ") -> ");
@@ -54,16 +68,25 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+        double x = 0, y = 0;
         System.out.println(getColor(1, 1));
         System.out.println(getColor(-1, 1));
         System.out.println(getColor(5, 1));
         System.out.println(getColor(9, 9));
         System.out.println(getColor(8, 1));
-        System.out.print("Input X: ");
-        double x = scan.nextDouble();
-        System.out.print("Input Y: ");
-        double y = scan.nextDouble();
+        Scanner scan = new Scanner(System.in);
+        while (global.a) {
+            System.out.print("Input X: ");
+            inpt(scan);
+            x = global.x;
+        }
+        Scanner scan1 = new Scanner(System.in);
+        global.a = true;
+        while (global.a) {
+            System.out.print("Input Y: ");
+            inpt(scan1);
+            y = global.x;
+        }
         printColorForPoint(x, y);
     }
 }
