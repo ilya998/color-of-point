@@ -12,8 +12,8 @@ public class Main {
 
     public static void inpt(Scanner scn) {
         try {
-            global.x = scn.nextDouble();
-            if (!(-10.0 < global.x && global.x < 10.0)) {
+            global.temp = scn.nextDouble();
+            if (!(-10.0 < global.temp && global.temp < 10.0)) {
                 System.out.println("Число выходит за допустимый предел. Пожалуйста вводите только числа от -10 до 10");
             } else {
                 global.a = false;
@@ -78,14 +78,14 @@ public class Main {
         while (global.a) {
             System.out.print("Input X: ");
             inpt(scan);
-            x = global.x;
+            x = global.temp;
         }
         Scanner scan1 = new Scanner(System.in);
         global.a = true;
         while (global.a) {
             System.out.print("Input Y: ");
             inpt(scan1);
-            y = global.x;
+            y = global.temp;
         }
         printColorForPoint(x, y);
     }
